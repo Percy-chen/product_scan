@@ -1,0 +1,160 @@
+<mvc:View controllerName="scan.product_scan.controller.production_scan" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:t="sap.ui.table" xmlns:core="sap.ui.core">
+	<App id="app">
+		<Page id="page" title="產成品掃描">
+			<content>
+				<SearchField id="SearchSN" search="onSearchProdOrderInfo" width="100%" placeholder="掃描產成品"></SearchField>
+				<f:Form editable="true">
+					<f:layout>
+						<f:ResponsiveGridLayout labelSpanL="3" labelSpanM="3" emptySpanL="0" emptySpanM="0" columnsL="3" columnsM="2"/>
+					</f:layout>
+					<f:formContainers>
+						<f:FormContainer>
+							<f:formElements>
+								<f:FormElement>
+									<f:fields>
+										<l:HorizontalLayout>
+											<Text text="生產訂單號:" width="6em" textAlign="Begin"/>
+											<Input id="ManufacturingOrder" value="{/Head/ManufacturingOrder}"/>
+										</l:HorizontalLayout>
+										<l:HorizontalLayout>
+											<Text text="物料編碼:" width="7em" textAlign="Begin"/>
+											<Input id="Product" value="{/Head/Product}"/>
+										</l:HorizontalLayout>
+										<l:HorizontalLayout>
+											<Text text="物料描述:" width="7em" textAlign="Begin"/>
+											<Input id="ProductName" value="{/Head/ProductName}"/>
+										</l:HorizontalLayout>
+										<l:HorizontalLayout>
+											<Text text="工廠:" width="5em" textAlign="Begin"/>
+											<Input id="ProductionPlant" value="{/Head/ProductionPlant}"/>
+										</l:HorizontalLayout>
+									</f:fields>
+								</f:FormElement>
+								<f:FormElement>
+									<f:fields>
+										<l:HorizontalLayout>
+											<Text text="序列號:" width="6em" textAlign="Begin"/>
+											<!--<Input id="SerialNumber" value="{/Head/SerialNumber}"/>-->
+											<ComboBox id="SNumber" items="{ path: '/SNumberList', sorter: { path: 'SerialNumber' } }" selectionChange="SNChange">
+												<core:Item key="{key}" text="{SerialNumber}"/>
+											</ComboBox>
+										</l:HorizontalLayout>
+										<l:HorizontalLayout>
+											<Text text="生產開始日期:" width="7em" textAlign="Begin"/>
+											<Input id="MfgOrderScheduledStartDate" value="{path:'/Head/MfgOrderScheduledStartDate',formatter:'.formatter.date'}"/>
+										</l:HorizontalLayout>
+										<l:HorizontalLayout>
+											<Text text="生產結束日期:" width="7em" textAlign="Begin"/>
+											<Input id="MfgOrderScheduledEndDate" value="{path:'/Head/MfgOrderScheduledEndDate',formatter:'.formatter.date'}"/>
+										</l:HorizontalLayout>
+										<l:HorizontalLayout>
+											<Text text="訂單類型:" width="5em" textAlign="Begin"/>
+											<Input id="ManufacturingOrderType" value="{path:'/Head/ManufacturingOrderType'}"/>
+										</l:HorizontalLayout>
+									</f:fields>
+								</f:FormElement>
+							</f:formElements>
+						</f:FormContainer>
+					</f:formContainers>
+				</f:Form>
+			</content>
+			<content>
+				<Table id="ItemTable" inset="false" items="{ path: '/CompList2'}" class="sapFDynamicPageAlignContent" width="auto" mode="MultiSelect"
+					busyIndicatorDelay="10" growing="true" growingScrollToLoad="true">
+					<headerToolbar>
+						<OverflowToolbar>
+							<Title text="組件綁定清單" level="H2"/>
+							<ToolbarSpacer/>
+							<Button id="addButton" icon="sap-icon://add" type="Transparent" press="onAdd"/>
+							<Button id="lessButton" icon="sap-icon://less" type="Transparent" press="onLess"/>
+						</OverflowToolbar>
+					</headerToolbar>
+					<columns>
+						<Column hAlign="Begin">
+							<Text text="序號"/>
+						</Column>
+						<Column hAlign="Begin">
+							<Text text="組件編號 "/>
+						</Column>
+						<Column hAlign="Begin">
+							<Text text="組件描述"/>
+						</Column>
+						<Column hAlign="Begin">
+							<Text text="組件序列號 "/>
+						</Column>
+						<Column hAlign="Begin">
+							<Text text="備註"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text text="{ItemNum}"/>
+								<Input value="{Material}" editable="{edit1}" change="handleChange"/>
+								<Input value="{ProductName}" editable="{edit1}"/>
+								<Input value="{SerialNumber}" editable="{edit1}" change="handleChange"/>
+								<ActionSelect id="Remark" selectedKey="{Remark}">
+									<items>
+										<sap.ui.core:ListItem xmlns:sap.ui.core="sap.ui.core" text="正常" key="0"/>
+										<sap.ui.core:ListItem xmlns:sap.ui.core="sap.ui.core" text="重工1" key="1"/>
+										<sap.ui.core:ListItem xmlns:sap.ui.core="sap.ui.core" text="重工2" key="2"/>
+										<sap.ui.core:ListItem xmlns:sap.ui.core="sap.ui.core" text="溢領" key="3"/>
+									</items>
+								</ActionSelect>
+								<!--	<Input value="{Remark}"/>-->
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+				<!--	</l:mainContent>-->
+				<!--	<l:sideContent>-->
+				<!--		<Title level="H1" text="組件需求清單"/>-->
+				<!--MultiHeadect-->
+				<!--		<Table id="InvTable" inset="false" items="{ path: '/CompList1'}" class="sapFDynamicPageAlignContent" width="auto" mode="None">-->
+				<!--<headerToolbar>-->
+				<!--	<OverflowToolbar>-->
+				<!--		<ToolbarSpacer/>-->
+				<!--		<Button id="HeadButton" text="抽出" type="Accept" press="onDel"/>-->
+				<!--		<Button id="EditButton" text="修改" type="Accept" press="onEdit"/>-->
+				<!--	</OverflowToolbar>-->
+				<!--</headerToolbar>-->
+				<!--			<columns>-->
+				<!--				<Column hAlign="Begin" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">-->
+				<!--					<Text text="序號 "/>-->
+				<!--				</Column>-->
+				<!--				<Column hAlign="Begin" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">-->
+				<!--					<Text text="組件編號"/>-->
+				<!--				</Column>-->
+				<!--				<Column hAlign="Begin">-->
+				<!--					<Text text="組件描述 "/>-->
+				<!--				</Column>-->
+				<!--				<Column hAlign="Begin">-->
+				<!--					<Text text="標識符 "/>-->
+				<!--				</Column>-->
+				<!--			</columns>-->
+				<!--			<items>-->
+				<!--				<ColumnListItem>-->
+				<!--					<cells>-->
+				<!--<Text text="{ZCNINVPROFILESTA}"/>   type="Navigation" press="get_Item"-->
+				<!--<ObjectStatus class="sapMObjectStatusLarge" state="{ path: 'ZCNINVPROFILESTA', formatter:'.formatter.FlagState'}"-->
+				<!--	icon="sap-icon://status-error"/>-->
+				<!--						<Text text="{ReservationItem}"/>-->
+				<!--						<Text text="{Material}"/>-->
+				<!--						<Text text="{ZCNINVNUM}"/>-->
+				<!--						<Text text="{COMP_CODE}"/>-->
+				<!--					</cells>-->
+				<!--				</ColumnListItem>-->
+				<!--			</items>-->
+				<!--		</Table>-->
+			</content>
+			<footer>
+				<OverflowToolbar>
+					<ToolbarSpacer/>
+					<Button text="保存" id="butSave" type="Accept" press="handleSave" width="6rem"/>
+				<!--	<Button text="提交" id="butSubmit" type="Accept" press="handleSubmit" width="6rem" visible="false"/>-->
+				</OverflowToolbar>
+			</footer>
+		</Page>
+	</App>
+</mvc:View>

@@ -1,0 +1,283 @@
+{
+	"_version": "1.12.0",
+	"sap.app": {
+		"id": "scan.product_scan",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "ui5template.basicSAPUI5ApplicationProject",
+			"version": "1.40.12"
+		},
+		"dataSources": {
+			"YY1_SNMFGDETAIL_CDS": {
+				"uri": "/destinations/WT_S4HC/YY1_SNMFGDETAIL_CDS/",
+				"type": "OData",
+				"settings": {
+					"annotations": []
+				}
+			},
+			"YY1_MFGORDERCOMP_CDS": {
+				"uri": "/destinations/WT_S4HC/YY1_MFGORDERCOMP_CDS/",
+				"type": "OData",
+				"settings": {
+					"annotations": []
+				}
+			},
+			"YY1_MFGORDERSNRECORD_CDS": {
+				"uri": "/destinations/WT_S4HC/YY1_MFGORDERSNRECORD_CDS/",
+				"type": "OData",
+				"settings": {
+					"annotations": []
+				}
+			},
+			"YY1_ROHMATSNRECORD_CDS": {
+				"uri": "/destinations/WT_S4HC/YY1_ROHMATSNRECORD_CDS/",
+				"type": "OData",
+				"settings": {
+					"annotations": []
+				}
+			},
+			"YY1_SNCOMP_CDS": {
+				"uri": "/destinations/WT_S4HC/YY1_SNCOMP_CDS/",
+				"type": "OData",
+				"settings": {
+					"annotations": []
+				}
+			},
+			"YY1_COMPONENTSNPROFILE_CDS": {
+				"uri": "/destinations/WT_S4HC/YY1_COMPONENTSNPROFILE_CDS/",
+				"type": "OData",
+				"settings": {
+					"annotations": []
+				}
+			},
+			"API_MATERIAL_DOCUMENT_SRV": {
+				"uri": "/destinations/WT_S4HC/API_MATERIAL_DOCUMENT_SRV/",
+				"type": "OData",
+				"settings": {
+					"annotations": []
+				}
+			},
+			"YY1_CHECKQUANTITY_CDS": {
+				"uri": "/destinations/WT_S4HC/YY1_CHECKQUANTITY_CDS/",
+				"type": "OData",
+				"settings": {
+					"annotations": []
+				}
+			},
+			"MATERIALSN.xsodata": {
+				"uri": "/destinations/APLEXHANA/MATERIALSN.xsodata/",
+				"type": "OData",
+				"settings": {
+					"annotations": []
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"fullWidth": true
+	},
+	"sap.ui5": {
+		"flexEnabled": false,
+		"rootView": {
+			"viewName": "scan.product_scan.view.App",
+			"type": "XML",
+			"async": true,
+			"id": "app"
+		},
+		"dependencies": {
+			"minUI5Version": "1.65.6",
+			"libs": {
+				"sap.ui.layout": {},
+				"sap.ui.core": {},
+				"sap.m": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "scan.product_scan.i18n.i18n"
+				}
+			},
+			"currentUser": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"uri": "/services/userapi/currentUser",
+				"preload": false
+			},
+			"userAttributes": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"preload": false,
+				"uri": "/services/userapi/attributes"
+			},
+			"SerialProdOrderInfo": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Auto",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request",
+					"useBatch": true
+				},
+				"dataSource": "YY1_SNMFGDETAIL_CDS",
+				"preload": true
+			},
+			"OrderCompInfo": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Auto",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request",
+					"useBatch": true
+				},
+				"dataSource": "YY1_MFGORDERCOMP_CDS",
+				"preload": true
+			},
+			"SaveOrderSN": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Auto",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request",
+					"useBatch": true
+				},
+				"dataSource": "YY1_MFGORDERSNRECORD_CDS",
+				"preload": true
+			},
+			"CompSN": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Auto",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request",
+					"useBatch": true
+				},
+				"dataSource": "YY1_ROHMATSNRECORD_CDS",
+				"preload": true
+			},
+			"SNComp": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Auto",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request",
+					"useBatch": true
+				},
+				"dataSource": "YY1_SNCOMP_CDS",
+				"preload": true
+			},
+			"CompSNProfile": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Auto",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request",
+					"useBatch": true
+				},
+				"dataSource": "YY1_COMPONENTSNPROFILE_CDS",
+				"preload": true
+			},
+			"CreateMaterialDoc": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Auto",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request",
+					"useBatch": true
+				},
+				"dataSource": "API_MATERIAL_DOCUMENT_SRV",
+				"preload": true
+			},
+			"CheckQuantity": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Auto",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request",
+					"useBatch": true
+				},
+				"dataSource": "YY1_CHECKQUANTITY_CDS",
+				"preload": true
+			},
+			"MATERIALSN": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request",
+					"useBatch": false,
+					"defaultUpdateMethod": "Put"
+				},
+				"dataSource": "MATERIALSN.xsodata",
+				"preload": true
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"async": true,
+				"viewPath": "scan.product_scan.view",
+				"controlAggregation": "pages",
+				"controlId": "appNavContainer",
+				"clearControlAggregation": false
+			},
+			"routes": [
+				{
+					"name": "production_scan",
+					"pattern": "",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"production_scan"
+					]
+				}
+			],
+			"targets": {
+				"production_scan": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewId": "production_scan",
+					"viewLevel": 1,
+					"viewName": "production_scan"
+				}
+			}
+		}
+	},
+	"sap.platform.hcp": {
+		"uri": "webapp",
+		"_version": "1.2.0"
+	}
+}

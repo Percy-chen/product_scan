@@ -1,0 +1,34 @@
+{
+    "application": {
+        "id": "",
+        "title": "scan.product_scan.product_scan",
+        "type": "SAP_UI5_Component",
+        "componentUrl": "/",
+        "appUrl": "#product_scan-Display",
+        "navigationComponentName": "scan.product_scan",
+        "intentSemanticObject": "product_scan",
+        "intentAction": "Display",
+        "html5ApplicationName": "productscan",
+        "HCPParentApplicationName": ""
+    },
+    "assignment": {
+        "groups": [
+            "159e487f-5ea7-4ca2-8c0d-187658843bfd-1571290288132"
+        ],
+        "contentPackages": [
+            "a990c0a6-55e1-458a-8db6-060ddfa2bf3c-1571290227813"
+        ],
+        "categories": []
+    },
+    "tile": {
+        "type": "StaticTile",
+        "title": "Production Scan",
+        "subtitle": "Scan",
+        "searchKeywords": "Production Scan,Scan",
+        "displayIconUrl": "sap-icon://mri-scan",
+        "displayInfoText": "",
+        "size": "1x1",
+        "serviceURL": "",
+        "refreshInterval": ""
+    }
+}
